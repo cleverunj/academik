@@ -1,0 +1,6 @@
+.hide-split-after .dropdown-toggle::after {
+  display: none !important;
+}
+.hide-split-before .dropdown-toggle::before {
+  display: none !important;
+}

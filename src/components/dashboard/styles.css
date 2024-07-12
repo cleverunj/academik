@@ -1,47 +1,57 @@
+.notification-badge {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    padding: 0px 5px;
+    border-radius: 50%;
+    background-color: orange;
+    color: white;
+    font-size: small;
+    color: white;
+    border: 1px solid white; 
+}
 .sidebar {
-    width: 350px;
-    padding: 25px;
+  width: 350px;
+  padding: 25px;
+}
+.accordion .accordion-item {
+  border: none;
+  border-bottom: 1px solid #dee2e6;
+}
+
+/* Quitar el borde del Accordion.Header */
+.accordion .accordion-header {
+  border: none;
+}
+
+/* Quitar el borde del Accordion.Body */
+.accordion .accordion-body {
+  border-top: none;
+  border-bottom: none;
+}
+
+@media (max-width: 991.98px) {
+  .sidebar {
+    width: 0px;
+    display: none;
   }
-  .accordion .accordion-item {
-    border: none;
-    border-bottom: 1px solid #dee2e6;
-  }
-  
-  /* Quitar el borde del Accordion.Header */
-  .accordion .accordion-header {
-    border: none;
-  }
-  
-  /* Quitar el borde del Accordion.Body */
-  .accordion .accordion-body {
-    border-top: none;
-    border-bottom: none;
-  }
-  
-  @media (max-width: 991.98px) {
-    .sidebar {
-      width: 0px;
-      display: none;
-    }
-  }
-  @media (min-width: 992px) {
-      
-  }
-  
-  .text-cut {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    /* font-size: small; */
-  }
-  /* .text-cut:hover {
+}
+@media (min-width: 992px) {
+}
+
+.text-cut {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  /* font-size: small; */
+}
+/* .text-cut:hover {
     white-space: normal;
     overflow: visible;
     text-overflow: unset;
   } */
-  .text-cut-parent:hover .text-cut {
-    white-space: normal;
-    overflow: visible;
-    text-overflow: unset;
-    
-  }
+.text-cut-parent:hover .text-cut {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: unset;
+}

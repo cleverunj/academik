@@ -108,7 +108,13 @@ const AdmGeneral = () => {
                     <ListGroup.Item action variant="primary">
                       Discapcidad
                     </ListGroup.Item>
-                    <ListGroup.Item action variant="primary">
+                    <ListGroup.Item
+                      action
+                      variant="primary"
+                      as={Link}
+                      href="/adm/admbeca"
+                      to="/adm/admbeca"
+                    >
                       Becas
                     </ListGroup.Item>
                     <ListGroup.Item action variant="primary">

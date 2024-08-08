@@ -43,8 +43,11 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  /* font-size: small; */
+  text-transform: capitalize;
+   font-size: small; 
 }
+
+
 /* .text-cut:hover {
     white-space: normal;
     overflow: visible;

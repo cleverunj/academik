@@ -1,0 +1,28 @@
+
+html, body{
+  height: 100%;  
+}
+.page {
+  background-image:url('https://getwallpapers.com/wallpaper/full/3/8/e/51525.jpg');
+  background-position:cover;
+  background-size:cover;
+}
+::placeholder {
+    color: #ffffff!important;
+    opacity: 1;
+    font-size:18px!important;
+}
+.formLogin {
+    background-color: rgba(0,0,0,0.40);
+    padding-top: 10px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 15px;
+    border-color:#d2d2d2;
+    border-width: 5px;
+    color:white;
+    box-shadow:0 1px 0 #cfcfcf;
+}
+
+

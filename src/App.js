@@ -3,7 +3,10 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import Login from "./components/Login";
 import Home from "./components/Home";
-
+import AdmGeneral from "./components/administracion/AdmGeneral";
+import AdmCarrera from "./components/administracion/AdmCarrera";
+import AdmCarreraNew from "./components/administracion/AdmCarreraNew";
+import interceptor from './components/global/interceptor.js';
 
 function App() {
   return (
@@ -13,6 +16,11 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/Home" element={<Home />} />
+          <Route path="/adm/admgeneral" element={<AdmGeneral />} />
+          <Route path="/adm/admcarrera" element={<AdmCarrera />} />
+          <Route path="/adm/admcarreranew" element={<AdmCarreraNew />} />
+          <Route path="/adm/admcarrera/edit/:id" element={<AdmCarreraNew />} />
+          
 
           <Route
             path="*"

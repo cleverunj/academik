@@ -13,38 +13,54 @@ import {
 } from "react-bootstrap";
 import Swal from "sweetalert2";
 import Dashboard from "../dashboard/Dashboard";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
-const AdmBecaNew = () => {
+const AdministracionNew = () => {
   const navigate = useNavigate();
   const [modificar, setModificar] = useState(false);
   const { id } = useParams();
 
-  useEffect(() => {
-    if (id) {
-      getModulo(id);
-      setModificar(true);
-    }
+  const location = useLocation();
+  const parts = location.pathname.split("/");
+  const [modulo, setModulo] = useState(parts[parts.length - 2]);
 
+  useEffect(() => {
+    if (modulo === "edit") {
+      setModulo(parts[parts.length - 3]);
+    }
     // eslint-disable-next-line
   }, []);
 
+  useEffect(() => {
+    if (modulo !== "edit") {
+      if (id) {
+        getModulo(id);
+        setModificar(true);
+      }
+    }
+  }, [modulo]);
+
   const getModulo = async (id) => {
+    console.log(modulo);
     let _datos = JSON.stringify({
+      modulo: modulo,
       id: id,
     });
     await Axios.post(
-      window.globales.url + "/admbeca/modulo",
+      window.globales.url + "/administracion/modulo",
       _datos
     ).then((res) => {
-      setFieldValue("beca", res.data.items[0].beca);
+      setFieldValue("id", res.data.items[0].id);
       setFieldValue("descripcion", res.data.items[0].descripcion);
     });
   };
 
   const guardar = async () => {
-    let _datos = JSON.stringify({ data: values });
-    let url = window.globales.url + "/admbeca/" + (modificar ? "modificar" : "guardar");
+    let _datos = JSON.stringify({ data: values, modulo: "beca" });
+    let url =
+      window.globales.url +
+      "/administracion/" +
+      (modificar ? "modificar" : "guardar");
 
     await Axios.post(url, _datos)
       .then((res) => {
@@ -54,7 +70,7 @@ const AdmBecaNew = () => {
             icon: "info",
           }).then((result) => {
             if (result.isConfirmed) {
-                navigate("/adm/admbeca");
+              //navigate("/adm/" + modulo);
             }
           });
         } else {
@@ -67,8 +83,8 @@ const AdmBecaNew = () => {
   };
 
   const initialValues = {
-    beca: "",
-    descripcion: ""
+    id: "",
+    descripcion: "",
   };
 
   const validationSchema = Yup.object({
@@ -81,6 +97,7 @@ const AdmBecaNew = () => {
       validationSchema: validationSchema,
       enableReinitialize: true,
       onSubmit: (values, { resetForm }) => {
+        
         guardar(values, resetForm);
       },
     });
@@ -119,7 +136,6 @@ const AdmBecaNew = () => {
                         maxLength={100}
                         style={{ textTransform: "uppercase" }}
                         isInvalid={!!errors.descripcion & touched.descripcion}
-                        
                       />
                       <Form.Control.Feedback type="invalid">
                         {errors.descripcion}
@@ -153,4 +169,4 @@ const AdmBecaNew = () => {
   );
 };
 
-export default AdmBecaNew;
+export default AdministracionNew;

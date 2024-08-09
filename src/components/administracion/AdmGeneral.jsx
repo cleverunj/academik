@@ -50,18 +50,15 @@ const AdmGeneral = () => {
                 <Tab.Pane eventKey="#link1">
                   <ListGroup>
                     <ListGroup.Item action variant="primary">
-                      Sedes
-                    </ListGroup.Item>
-                    <ListGroup.Item action variant="primary">
-                      Locales
-                    </ListGroup.Item>
-                    <ListGroup.Item action variant="primary">
                       Ambientes
                     </ListGroup.Item>
-                    <ListGroup.Item action variant="primary">
-                      Facultad
-                    </ListGroup.Item>
-                    <ListGroup.Item action variant="primary">
+                    <ListGroup.Item
+                      action
+                      variant="primary"
+                      as={Link}
+                      href="/adm/depaca"
+                      to="/adm/depaca"
+                    >
                       Departamento Académico
                     </ListGroup.Item>
                   </ListGroup>
@@ -78,9 +75,6 @@ const AdmGeneral = () => {
                       Carreras Profesionales
                     </ListGroup.Item>
                     <ListGroup.Item action variant="primary">
-                      Curriculas
-                    </ListGroup.Item>
-                    <ListGroup.Item action variant="primary">
                       Cursos
                     </ListGroup.Item>
                     <ListGroup.Item action variant="primary">
@@ -90,17 +84,32 @@ const AdmGeneral = () => {
                 </Tab.Pane>
                 <Tab.Pane eventKey="#link3">
                   <ListGroup>
-                    <ListGroup.Item action variant="primary">
+                    <ListGroup.Item
+                      action
+                      variant="primary"
+                      as={Link}
+                      href="/adm/condalumno"
+                      to="/adm/condalumno"
+                    >
                       Condición alumno
                     </ListGroup.Item>
-                    <ListGroup.Item action variant="primary">
+                    <ListGroup.Item
+                      action
+                      variant="primary"
+                      as={Link}
+                      href="/adm/gradoacademico"
+                      to="/adm/gradoacademico"
+                    >
                       Grado Académico
                     </ListGroup.Item>
-                    <ListGroup.Item action variant="primary">
+                    <ListGroup.Item
+                      action
+                      variant="primary"
+                      as={Link}
+                      href="/adm/modingreso"
+                      to="/adm/modingreso"
+                    >
                       Modalidad de ingreso
-                    </ListGroup.Item>
-                    <ListGroup.Item action variant="primary">
-                      Modalidad de estudio
                     </ListGroup.Item>
                     <ListGroup.Item action variant="primary">
                       Categoria alumno
@@ -112,8 +121,8 @@ const AdmGeneral = () => {
                       action
                       variant="primary"
                       as={Link}
-                      href="/adm/admbeca"
-                      to="/adm/admbeca"
+                      href="/adm/beca"
+                      to="/adm/beca"
                     >
                       Becas
                     </ListGroup.Item>
@@ -142,42 +151,32 @@ const AdmGeneral = () => {
                 </Tab.Pane>
                 <Tab.Pane eventKey="#link4">
                   <ListGroup>
-                    <ListGroup.Item action variant="primary">
+                    <ListGroup.Item
+                      action
+                      variant="primary"
+                      as={Link}
+                      href="/adm/catdocente"
+                      to="/adm/catdocente"
+                    >
                       Categpría docente
                     </ListGroup.Item>
-                    <ListGroup.Item action variant="primary">
+                    <ListGroup.Item
+                      action
+                      variant="primary"
+                      as={Link}
+                      href="/adm/condocente"
+                      to="/adm/condocente"
+                    >
                       Condición docente
                     </ListGroup.Item>
-                    <ListGroup.Item action variant="primary">
+                    <ListGroup.Item
+                      action
+                      variant="primary"
+                      as={Link}
+                      href="/adm/dedocente"
+                      to="/adm/dedocente"
+                    >
                       Dedicación docente
-                    </ListGroup.Item>
-                    <ListGroup.Item action variant="primary">
-                      Cargo
-                    </ListGroup.Item>
-                  </ListGroup>
-                </Tab.Pane>
-                <Tab.Pane eventKey="#link5">
-                  <ListGroup>
-                    <ListGroup.Item action variant="primary">
-                      Tipo de ambiente
-                    </ListGroup.Item>
-                    <ListGroup.Item action variant="primary">
-                      Tipo de dictado
-                    </ListGroup.Item>
-                    <ListGroup.Item action variant="primary">
-                      Tipo de evaluación
-                    </ListGroup.Item>
-                    <ListGroup.Item action variant="primary">
-                      Tipo de institución
-                    </ListGroup.Item>
-                    <ListGroup.Item action variant="primary">
-                      Tipo de preparación
-                    </ListGroup.Item>
-                    <ListGroup.Item action variant="primary">
-                      Tipo de resolución
-                    </ListGroup.Item>
-                    <ListGroup.Item action variant="primary">
-                      Tipo de ocupación
                     </ListGroup.Item>
                   </ListGroup>
                 </Tab.Pane>

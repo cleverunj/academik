@@ -12,22 +12,44 @@ import Dashboard from "../dashboard/Dashboard";
 import DataTable from "react-data-table-component";
 import Axios from "axios";
 import Swal from "sweetalert2";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
-const AdmBeca = () => {
+const Administracion = () => {
   const [columns, setColumns] = useState([]);
   const [rowdata, setRowdata] = useState([]);
-  const [buscar, setBuscar] = useState("");
+  const [moduloTitulo, setModuloTitulo] = useState([]);
+
+  const location = useLocation();
+  const parts = location.pathname.split("/");
+  const modulo = parts[parts.length - 1];
 
   useEffect(() => {
+    if (modulo == "beca") {
+      setModuloTitulo("Becas");
+    }
+    if (modulo == "depaca") {
+      setModuloTitulo("Departamento Académico");
+    }
+    if (modulo == "catdocente") {
+      setModuloTitulo("Categoria Docente");
+    }
+    if (modulo == "condocente") {
+      setModuloTitulo("Condicion Docente");
+    }
+    if (modulo == "conalumno") {
+      setModuloTitulo("Condicion Alumno");
+    }
+    if (modulo == "gradoacademico") {
+      setModuloTitulo("Grado Académico");
+    }
+    if (modulo == "modingreso") {
+      setModuloTitulo("Modalidad de Ingreso");
+    }
+
     getColumns();
     getLista();
     // eslint-disable-next-line
   }, []);
-
-
-
-
 
   const paginationComponentOptions = {
     rowsPerPageText: "Filas",
@@ -35,7 +57,13 @@ const AdmBeca = () => {
   };
 
   const getLista = async () => {
-    const res = await Axios.post(window.globales.url + "/admbeca/lista");
+    let _datos = JSON.stringify({
+      modulo: modulo,
+    });
+    const res = await Axios.post(
+      window.globales.url + "/administracion/lista",
+      _datos
+    );
     setRowdata(res.data.items);
   };
 
@@ -44,7 +72,7 @@ const AdmBeca = () => {
       {
         id: 1,
         name: "ID",
-        selector: (row) => row.beca,
+        selector: (row) => row.id,
         sortable: true,
         reorder: true,
         width: "4rem",
@@ -74,10 +102,10 @@ const AdmBeca = () => {
                 </span>
               </Dropdown.Toggle>
               <Dropdown.Menu className="remove-arrow">
-                <Dropdown.Item as={Link} to={`edit/${row.beca}`}>
+                <Dropdown.Item as={Link} to={`edit/${row.id}`}>
                   <i className="bi bi-pencil-fill me-2"></i>Modificar
                 </Dropdown.Item>
-                <Dropdown.Item onClick={() => eliminar(row.beca)}>
+                <Dropdown.Item onClick={() => eliminar(row.id)}>
                   <i className="bi bi bi-trash-fill me-2"></i>Eliminar
                 </Dropdown.Item>
               </Dropdown.Menu>
@@ -88,36 +116,28 @@ const AdmBeca = () => {
     ]);
   };
 
-
-  
   const eliminar = async (id) => {
     let _datos = JSON.stringify({ id: id });
     Swal.fire({
-      title: '¿Confirmar Eliminación?',
-      text: '¿Estás seguro de que deseas eliminar este registro?',
-      icon: 'warning',
+      title: "¿Confirmar Eliminación?",
+      text: "¿Estás seguro de que deseas eliminar este registro?",
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonText: 'Sí, continuar',
-      cancelButtonText: 'Cancelar',
+      confirmButtonText: "Sí, continuar",
+      cancelButtonText: "Cancelar",
     }).then((result) => {
       if (result.isConfirmed) {
-
-        Axios.post(window.globales.url + "/admbeca/eliminar", _datos)
+        Axios.post(window.globales.url + "/" + modulo + "/eliminar", _datos)
           .then((res) => {
-            setRowdata((prevData) =>
-              prevData.filter((row) => row.beca !== id)
-            );
+            setRowdata((prevData) => prevData.filter((row) => row.beca !== id));
           })
           .catch((error) => {
             Swal.fire({ text: "Algo pasó! " + error, icon: "error" });
           });
       } else if (result.dismiss === Swal.DismissReason.cancel) {
-
       }
     });
   };
-
-
 
   const customStyles = {
     headCells: {
@@ -128,7 +148,7 @@ const AdmBeca = () => {
   };
 
   const componente = (
-    <Container  className="" >
+    <Container className="">
       <div className="d-flex justify-content-between mb-2">
         <Breadcrumb>
           <Breadcrumb.Item as={Link} href="/" to="/">
@@ -137,20 +157,14 @@ const AdmBeca = () => {
           <Breadcrumb.Item onClick={() => window.history.back()}>
             Adm. General
           </Breadcrumb.Item>
-          <Breadcrumb.Item active>Becas</Breadcrumb.Item>
+          <Breadcrumb.Item active>{moduloTitulo}</Breadcrumb.Item>
         </Breadcrumb>
-        <Button
-          as={Link}
-          to="/adm/admbeca/new"
-          variant="outline-primary"
-          type="button"
-        >
+        <Button as={Link} to={`new`} variant="outline-primary" type="button">
           <i className="bi bi-file-earmark-plus"></i> Nuevo
         </Button>
       </div>
-      
-      <Card >
-     
+
+      <Card>
         <DataTable
           columns={columns}
           data={rowdata}
@@ -162,11 +176,8 @@ const AdmBeca = () => {
           searchable
           striped
           customStyles={customStyles}
-
         />
-       
       </Card>
-      
     </Container>
   );
 
@@ -177,4 +188,4 @@ const AdmBeca = () => {
   );
 };
 
-export default AdmBeca;
+export default Administracion;

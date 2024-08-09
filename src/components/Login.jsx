@@ -13,7 +13,6 @@ import styles from "./login.module.css";
 
 function Login(props) {
   let navigate = useNavigate();
-  
   const [nivel, setNivel] = useState(null);
   const [persona, setPersona] = useState(null);
   const [usuario, setUsuario] = useState(null);
